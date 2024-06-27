@@ -229,7 +229,7 @@ for i = 1, 2 do
     elseif i == 2 then
         Button.Text = "Esp Menu Jugadores"
         Button.MouseButton1Click:Connect(function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/USEXe42D"))()
+               loadstring(game:HttpGet("https://raw.githubusercontent.com/GumballGame777/player/main/player"))()
         end)
     end
 end
