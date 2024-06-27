@@ -1,0 +1,267 @@
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local OpenButton = Instance.new("TextButton")
+local CloseButton = Instance.new("TextButton")
+local TeleportButton = Instance.new("TextButton")
+local EspButton = Instance.new("TextButton")
+local TeleportMenu = Instance.new("Frame")
+local EspMenu = Instance.new("Frame")
+local MenuLabel = Instance.new("TextLabel")
+
+-- Configuración de colores
+local colores = {
+    rojo = Color3.fromRGB(255, 0, 0),
+    negro = Color3.fromRGB(0, 0, 0),
+    gris = Color3.fromRGB(128, 128, 128)
+}
+
+-- Configuración de ScreenGui
+ScreenGui.Name = "DrixHub - GEF"
+ScreenGui.Parent = syn and game.CoreGui or game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+
+-- Configuración de MainFrame
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = colores.gris
+MainFrame.BorderColor3 = colores.rojo
+MainFrame.BorderSizePixel = 2
+MainFrame.Position = UDim2.new(0.5, -200, 0.5, -100)
+MainFrame.Size = UDim2.new(0, 400, 0, 200)
+MainFrame.Draggable = true
+MainFrame.Active = true
+MainFrame.Visible = false
+
+-- Configuración de OpenButton
+OpenButton.Name = "OpenButton"
+OpenButton.Parent = ScreenGui
+OpenButton.BackgroundColor3 = colores.rojo
+OpenButton.TextColor3 = colores.negro
+OpenButton.Position = UDim2.new(0.5, -425, 0.5, 4)
+OpenButton.Size = UDim2.new(0, 100, 0, 50)
+OpenButton.Text = "Abrir DrixHub - GEF"
+OpenButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = true
+end)
+
+-- Configuración de CloseButton
+CloseButton.Name = "CloseButton"
+CloseButton.Parent = MainFrame
+CloseButton.BackgroundColor3 = colores.rojo
+CloseButton.TextColor3 = colores.negro
+CloseButton.Position = UDim2.new(1, -25, 0, 0)
+CloseButton.Size = UDim2.new(0, 25, 0, 25)
+CloseButton.Text = "X"
+CloseButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = false
+end)
+
+-- Configuración de MenuLabel
+MenuLabel.Name = "MenuLabel"
+MenuLabel.Parent = MainFrame
+MenuLabel.BackgroundColor3 = colores.gris
+MenuLabel.TextColor3 = colores.negro
+MenuLabel.Position = UDim2.new(0, 0, 0, 0)
+MenuLabel.Size = UDim2.new(0, 200, 0, 25)
+MenuLabel.Text = "GEF Script"
+
+-- Configuración de TeleportButton
+TeleportButton.Name = "TeleportButton"
+TeleportButton.Parent = MainFrame
+TeleportButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+TeleportButton.Size = UDim2.new(0, 200, 0, 50)
+TeleportButton.Text = "Teletransporte"
+
+-- Configuración de EspButton
+EspButton.Name = "EspButton"
+EspButton.Parent = MainFrame
+EspButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+EspButton.Position = UDim2.new(0, 0, 0, 50)
+EspButton.Size = UDim2.new(0, 200, 0, 50)
+EspButton.Text = "Esp"
+
+-- Configuración de TeleportMenu
+TeleportMenu.Name = "TeleportMenu"
+TeleportMenu.Parent = MainFrame
+TeleportMenu.BackgroundColor3 = Color3.fromRGB(128, 128, 128)
+TeleportMenu.Position = UDim2.new(0, 200, 0, 0)
+TeleportMenu.Size = UDim2.new(0, 200, 0, 200)
+TeleportMenu.Visible = false
+
+-- Configuración de EspMenu
+EspMenu.Name = "EspMenu"
+EspMenu.Parent = MainFrame
+EspMenu.BackgroundColor3 = Color3.fromRGB(128, 128, 128)
+EspMenu.Position = UDim2.new(0, 200, 0, 0)
+EspMenu.Size = UDim2.new(0, 200, 0, 200)
+EspMenu.Visible = false
+
+-- Crear botones en TeleportMenu y configurar teletransporte
+for i = 1, 8 do
+    local Button = Instance.new("TextButton")
+    Button.Parent = TeleportMenu
+    Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Button.Size = UDim2.new(0, 180, 0, 20)
+    Button.Position = UDim2.new(0, 10, 0, (i - 1) * 25)
+    
+    if i == 1 then
+        Button.Text = "Escopeta"
+        Button.MouseButton1Click:Connect(function()
+            local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+            rootPart.CFrame = game:GetService("Workspace").Pickups.Shotgun.CFrame
+        end)
+    elseif i == 2 then
+        Button.Text = "Cartuchos"
+        Button.MouseButton1Click:Connect(function()
+            local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+            rootPart.CFrame = game:GetService("Workspace").Pickups.Shells.CFrame
+        end)
+    elseif i == 3 then
+        Button.Text = "Botiquín"
+        Button.MouseButton1Click:Connect(function()
+            local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+            rootPart.CFrame = game:GetService("Workspace").Pickups.Medkit.CFrame
+        end)
+    elseif i == 4 then
+        Button.Text = "Comida"
+        Button.MouseButton1Click:Connect(function()
+            local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+            rootPart.CFrame = game:GetService("Workspace").Pickups.Food.CFrame
+        end)
+    elseif i == 5 then
+        Button.Text = "Bate"
+        Button.MouseButton1Click:Connect(function()
+            local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+            rootPart.CFrame = game:GetService("Workspace").Pickups.Bat.CFrame
+        end)
+    elseif i == 6 then
+        Button.Text = "Palanca"
+        Button.MouseButton1Click:Connect(function()
+            local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+            rootPart.CFrame = game:GetService("Workspace").Pickups.Crowbar.CFrame
+        end)
+    elseif i == 7 then
+        Button.Text = "Martillo"
+        Button.MouseButton1Click:Connect(function()
+            local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+            rootPart.CFrame = game:GetService("Workspace").Pickups.Hammer.CFrame
+        end)
+    elseif i == 8 then
+        Button.Text = "Refresco"
+        Button.MouseButton1Click:Connect(function()
+            local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+            rootPart.CFrame = game:GetService("Workspace").Pickups.Soda.CFrame
+        end)
+    end
+end
+
+-- Crear botones en EspMenu
+for i = 1, 2 do
+    local Button = Instance.new("TextButton")
+    Button.Parent = EspMenu
+    Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Button.Size = UDim2.new(0, 180, 0, 20)
+    Button.Position = UDim2.new(0, 10, 0, (i - 1) * 25)
+
+    if i == 1 then
+        Button.Text = "Esp Gefs"
+        Button.MouseButton1Click:Connect(function()
+            local espHabilitado = true
+
+            -- Función para crear ESP para Hurtbox
+            local function crearESPParaHurtbox(part)
+                local espGui = Instance.new("BillboardGui", part)
+                espGui.Adornee = part
+                espGui.Size = UDim2.new(0, 200, 0, 50)
+                espGui.AlwaysOnTop = true
+                espGui.StudsOffset = Vector3.new(0, 3, 0)
+                
+                local nameLabel = Instance.new("TextLabel", espGui)
+                nameLabel.Text = "GEF"
+                nameLabel.BackgroundTransparency = 1
+                nameLabel.Size = UDim2.new(0, 200, 0, 20)
+                nameLabel.Font = Enum.Font.SourceSansBold
+                nameLabel.TextSize = 18
+                
+                local distanceLabel = Instance.new("TextLabel", espGui)
+                distanceLabel.BackgroundTransparency = 1
+                distanceLabel.Size = UDim2.new(0, 200, 0, 20)
+                distanceLabel.Font = Enum.Font.SourceSansBold
+                distanceLabel.TextSize = 18
+                distanceLabel.Position = UDim2.new(0, 0, 0, 20)
+                
+                -- Actualizar distancia y color del texto
+                game:GetService("RunService").RenderStepped:Connect(function()
+                    local distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - part.Position).magnitude
+                    distanceLabel.Text = string.format("Distancia: %.2f", distance)
+                    
+                    if distance < 50 then
+                        nameLabel.TextColor3 = Color3.new(1, 0.5, 0)
+                        distanceLabel.TextColor3 = Color3.new(1, 0.5, 0)
+                    elseif distance < 100 then
+                        nameLabel.TextColor3 = Color3.new(1, 1, 0)
+                        distanceLabel.TextColor3 = Color3.new(1, 1, 0)
+                    else
+                        nameLabel.TextColor3 = Color3.new(0, 1, 0)
+                        distanceLabel.TextColor3 = Color3.new(0, 1, 0)
+                    end
+                end)
+            end
+
+            -- Función para activar/desactivar ESP y actualizar Hurtbox cada 60 segundos
+            local function alternarESP()
+                while espHabilitado do
+                    for _, part in pairs(workspace:GetDescendants()) do
+                        if part:IsA("BasePart") and part.Name == "Hurtbox" then
+                            if not part:FindFirstChildOfClass("BillboardGui") then
+                                crearESPParaHurtbox(part)
+                            end
+                        end
+                    end
+                    wait(60) -- Esperar 60 segundos antes de repetir
+                end
+            end
+
+            -- Ejecutar la función alternarESP inmediatamente al hacer clic en el botón
+            alternarESP()
+        end)
+    elseif i == 2 then
+        Button.Text = "Esp Menu Jugadores"
+        Button.MouseButton1Click:Connect(function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/USEXe42D"))()
+        end)
+    end
+end
+
+-- Añadir separadores rojos entre secciones
+local function crearSeparador(parent, position)
+    local Separador = Instance.new("Frame")
+    Separador.Parent = parent
+    Separador.BackgroundColor3 = colores.rojo
+    Separador.Size = UDim2.new(0, 180, 0, 2)
+    Separador.Position = position
+end
+
+-- Crear separadores en TeleportMenu
+for i = 1, 8 do
+    crearSeparador(TeleportMenu, UDim2.new(0, 10, 0, (i * 25) - 3))
+end
+
+-- Crear separadores en EspMenu
+for i = 1, 2 do
+    crearSeparador(EspMenu, UDim2.new(0, 10, 0, (i * 25) - 3))
+end
+
+-- Función para mostrar/ocultar menús
+TeleportButton.MouseButton1Click:Connect(function()
+    TeleportMenu.Visible = not TeleportMenu.Visible
+    EspMenu.Visible = false
+end)
+
+EspButton.MouseButton1Click:Connect(function()
+    EspMenu.Visible = not EspMenu.Visible
+    TeleportMenu.Visible = false
+end)
+
+-- Configurar Hotkey para abrir/cerrar GUI
